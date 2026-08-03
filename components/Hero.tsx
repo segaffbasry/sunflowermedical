@@ -28,15 +28,15 @@ export default function Hero() {
     <section
       ref={ref}
       id="top"
-      className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden pt-[var(--header-height)]"
+      className="relative overflow-x-clip pt-[var(--header-height)]"
     >
-      <div className="shell relative flex flex-1 flex-col justify-center pb-8 pt-14 sm:pt-20">
+      <div className="hero-intro shell relative flex flex-col justify-center pb-[clamp(1rem,2.5svh,2rem)] pt-[clamp(1.5rem,5svh,5rem)]">
         <div className="max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.25, ease: EASE }}
-            className="mb-7 inline-flex items-center gap-2.5 rounded-full bg-[rgba(27,27,24,0.045)] py-1.5 pl-2 pr-4"
+            className="mb-[clamp(1rem,3svh,1.75rem)] inline-flex items-center gap-2.5 rounded-full bg-[rgba(27,27,24,0.045)] py-1.5 pl-2 pr-4"
           >
             <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#ffc937]">
               <svg width="9" height="9" viewBox="0 0 10 10" fill="none">
@@ -49,7 +49,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Line-by-line masked reveal */}
-          <h1 className="display display-xl">
+          <h1 className="display display-xl [font-size:clamp(2.65rem,min(5.4vw,9svh),5.35rem)]">
             {hero.lines.map((line, i) => (
               <span key={line} className="block overflow-hidden pb-[0.08em]">
                 <motion.span
@@ -82,7 +82,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.85, ease: EASE }}
-            className="lede mt-7 max-w-xl"
+            className="lede mt-[clamp(1rem,3svh,1.75rem)] max-w-xl"
           >
             {hero.sub}
           </motion.p>
@@ -91,7 +91,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 1, ease: EASE }}
-            className="mt-9 flex flex-wrap items-center gap-3"
+            className="mt-[clamp(1.25rem,4svh,2.25rem)] flex flex-wrap items-center gap-3"
           >
             <Button href={hero.primary.href} variant="primary" arrow>
               {hero.primary.label}
@@ -107,7 +107,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.12, ease: EASE }}
-          className="pill-rail -mx-5 mt-7 overflow-x-auto px-5 pb-1 sm:mx-0 sm:px-0"
+          className="pill-rail -mx-5 mt-[clamp(1rem,3svh,1.75rem)] overflow-x-auto px-5 pb-1 sm:mx-0 sm:px-0"
         >
           <ul aria-label="Manufacturing credentials" className="flex w-max items-center gap-2 sm:w-auto sm:flex-wrap">
             {proof.marks.map((mark) => (

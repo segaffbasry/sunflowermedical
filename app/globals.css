@@ -164,6 +164,16 @@ button:disabled,
     padding-inline: clamp(1.25rem, 4vw, 5rem);
   }
 
+  .hero-intro {
+    min-height: calc(100svh - var(--header-height));
+  }
+
+  @supports (height: 100dvh) {
+    .hero-intro {
+      min-height: calc(100dvh - var(--header-height));
+    }
+  }
+
   /* Raised pill CTA with a single light sweep on hover. */
   .cta-button {
     isolation: isolate;
