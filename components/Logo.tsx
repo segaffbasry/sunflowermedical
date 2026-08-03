@@ -54,7 +54,7 @@ export function Mark({
           />
         ))}
       </g>
-      <style>{`@keyframes petal-bloom { to { opacity: 1 } }`}</style>
+      {animate && <style>{`@keyframes petal-bloom { to { opacity: 1 } }`}</style>}
     </svg>
   );
 }
@@ -71,24 +71,41 @@ export default function Logo({
   animate?: boolean;
 }) {
   return (
-    <div className="flex items-center gap-2.5">
-      <Mark className="h-8 w-auto shrink-0" tone={petal} animate={animate} />
-      <div className="leading-none">
+    <div className="inline-flex flex-col">
+      <div className="flex items-center gap-2 sm:gap-2.5">
+        <Mark className="h-7 w-auto shrink-0 sm:h-8" tone={petal} animate={animate} />
         <div
-          className="font-sans text-[1.4rem] font-semibold lowercase tracking-[-0.045em]"
+          className="font-sans text-[1.2rem] font-semibold lowercase leading-none tracking-[-0.045em] sm:text-[1.4rem]"
           style={{ color: tone }}
         >
           sunflower
         </div>
-        {!compact && (
-          <div
-            className="mt-[3px] text-[0.5rem] font-medium uppercase tracking-[0.18em]"
-            style={{ color: tone, opacity: 0.5 }}
-          >
-            Medical
-          </div>
-        )}
       </div>
+
+      {!compact && (
+        <div data-logo-strapline className="mt-1 w-full">
+          <span
+            className="block h-[1.5px] w-full"
+            style={{ backgroundColor: petal }}
+            aria-hidden="true"
+          />
+          <div
+            className="flex items-center justify-center gap-1 whitespace-nowrap py-[3px] font-sans text-[clamp(0.34rem,1.7vw,0.5rem)] font-semibold uppercase leading-none tracking-[0.08em] sm:gap-1.5"
+            style={{ color: tone }}
+          >
+            <span>UK Manufacturer</span>
+            <span style={{ color: petal }} aria-hidden="true">
+              •
+            </span>
+            <span>Healthcare Furniture</span>
+          </div>
+          <span
+            className="block h-[1.5px] w-full"
+            style={{ backgroundColor: petal }}
+            aria-hidden="true"
+          />
+        </div>
+      )}
     </div>
   );
 }
