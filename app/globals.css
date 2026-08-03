@@ -33,6 +33,16 @@
   --font-sans: var(--font-inter), Arial, sans-serif;
 }
 
+:root {
+  --header-height: 92px;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --header-height: 104px;
+  }
+}
+
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -40,7 +50,7 @@
 
 html {
   background: #fdfdf7;
-  scroll-padding-top: 72px;
+  scroll-padding-top: var(--header-height);
 }
 
 body {
@@ -51,7 +61,7 @@ body {
 }
 
 [id] {
-  scroll-margin-top: 72px;
+  scroll-margin-top: var(--header-height);
 }
 
 body[data-locked="true"] {

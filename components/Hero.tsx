@@ -28,7 +28,7 @@ export default function Hero() {
     <section
       ref={ref}
       id="top"
-      className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden pt-[72px]"
+      className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden pt-[var(--header-height)]"
     >
       <div className="shell relative flex flex-1 flex-col justify-center pb-8 pt-14 sm:pt-20">
         <div className="max-w-4xl">

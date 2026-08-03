@@ -40,9 +40,9 @@ export default function Header() {
             : "bg-[rgba(253,253,247,0.96)] backdrop-blur-md"
         }`}
       >
-        <div className="shell grid h-[72px] grid-cols-[1fr_auto] items-center gap-5 xl:grid-cols-[1fr_auto_1fr]">
+        <div className="shell grid h-[var(--header-height)] grid-cols-[1fr_auto] items-center gap-5 xl:grid-cols-[1fr_auto_1fr]">
           <Link href="/" aria-label="Sunflower Medical — home" className="justify-self-start">
-            <Logo />
+            <Logo preload />
           </Link>
 
           <nav className="hidden items-center gap-1.5 xl:flex">
@@ -121,7 +121,7 @@ export default function Header() {
             transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden border-b border-[rgba(27,27,24,0.08)] bg-[#fdfdf7] xl:hidden"
           >
-            <nav className="shell flex max-h-[calc(100svh-72px)] flex-col gap-1 overflow-y-auto py-3">
+            <nav className="shell flex max-h-[calc(100svh-var(--header-height))] flex-col gap-1 overflow-y-auto py-3">
               {nav.map((item) => (
                 <Link
                   key={item.label}

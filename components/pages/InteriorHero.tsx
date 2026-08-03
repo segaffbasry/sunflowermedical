@@ -9,7 +9,7 @@ type InteriorHeroProps = {
 
 export default function InteriorHero({ eyebrow, title, intro, pills = [] }: InteriorHeroProps) {
   return (
-    <section id="top" className="relative overflow-hidden pb-16 pt-[calc(72px+4.5rem)] sm:pb-24 sm:pt-[calc(72px+7rem)]">
+    <section id="top" className="relative overflow-hidden pb-16 pt-[calc(var(--header-height)+4.5rem)] sm:pb-24 sm:pt-[calc(var(--header-height)+7rem)]">
       <div className="shell">
         <div className="grid gap-8 border-b border-[rgba(27,27,24,0.1)] pb-12 sm:pb-16 lg:grid-cols-[0.58fr_1.42fr] lg:gap-16">
           <Reveal>

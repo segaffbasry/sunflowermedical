@@ -3,7 +3,7 @@ import Button from "@/components/ui/Button";
 
 export default function NotFound() {
   return (
-    <main id="top" className="shell flex min-h-[78svh] items-center pb-20 pt-[calc(72px+5rem)]">
+    <main id="top" className="shell flex min-h-[78svh] items-center pb-20 pt-[calc(var(--header-height)+5rem)]">
       <div className="max-w-3xl">
         <div className="eyebrow">404 · Page not found</div>
         <h1 className="display mt-6 text-[clamp(2.8rem,7vw,7rem)] leading-[0.95]">This page has moved out of range.</h1>

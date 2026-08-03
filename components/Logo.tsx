@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 /* The petal fan is the one piece of the existing identity worth keeping.
    Redrawn as vector so it stays crisp, can go monochrome on a dark ground,
    and can optionally bloom in where animation is appropriate.
@@ -60,52 +62,21 @@ export function Mark({
 }
 
 export default function Logo({
-  compact = false,
-  tone = "#1b1b18",
-  petal = "var(--color-sun)",
-  animate = false,
+  className = "w-[9.75rem] sm:w-44",
+  preload = false,
 }: {
-  compact?: boolean;
-  tone?: string;
-  petal?: string;
-  animate?: boolean;
+  className?: string;
+  preload?: boolean;
 }) {
   return (
-    <div className="inline-flex flex-col">
-      <div className="flex items-center gap-2 sm:gap-2.5">
-        <Mark className="h-7 w-auto shrink-0 sm:h-8" tone={petal} animate={animate} />
-        <div
-          className="font-sans text-[1.2rem] font-semibold lowercase leading-none tracking-[-0.045em] sm:text-[1.4rem]"
-          style={{ color: tone }}
-        >
-          sunflower
-        </div>
-      </div>
-
-      {!compact && (
-        <div data-logo-strapline className="mt-1 w-full">
-          <span
-            className="block h-[1.5px] w-full"
-            style={{ backgroundColor: petal }}
-            aria-hidden="true"
-          />
-          <div
-            className="flex items-center justify-center gap-1 whitespace-nowrap py-[3px] font-sans text-[clamp(0.34rem,1.7vw,0.5rem)] font-semibold uppercase leading-none tracking-[0.08em] sm:gap-1.5"
-            style={{ color: tone }}
-          >
-            <span>UK Manufacturer</span>
-            <span style={{ color: petal }} aria-hidden="true">
-              •
-            </span>
-            <span>Healthcare Furniture</span>
-          </div>
-          <span
-            className="block h-[1.5px] w-full"
-            style={{ backgroundColor: petal }}
-            aria-hidden="true"
-          />
-        </div>
-      )}
-    </div>
+    <Image
+      src="/sunflower-medical-logo.png"
+      width={300}
+      height={148}
+      alt="Sunflower — UK Manufacturer · Healthcare Furniture"
+      preload={preload}
+      unoptimized
+      className={`h-auto max-w-full ${className}`}
+    />
   );
 }
