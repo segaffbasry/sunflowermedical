@@ -385,7 +385,7 @@ export const footerColumns = [
       { label: "Catalogue", href: "/catalogue" },
       { label: "Interactive brochure", href: "https://online.fliphtml5.com/fgapo/oins/#p=1" },
       { label: "Distributor portal", href: "https://sunflowermedical-my.sharepoint.com/:f:/g/personal/sclark_sunflowermedical_co_uk/Eny8Avfn7W9GswFwnCKkH2sBFvzuohPqhDuf4O4V-i87ZA?e=bLq6Ws" },
-      { label: "Terms & conditions", href: "https://www.sunflowermedical.co.uk/wp-content/uploads/2025/03/TCs-01.04.25-1.pdf" },
+      { label: "Terms & conditions", href: "/terms" },
     ],
   },
 ];

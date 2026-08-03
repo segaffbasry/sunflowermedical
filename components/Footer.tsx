@@ -73,22 +73,18 @@ export default function Footer() {
             © {new Date().getFullYear()} {company.name}. Manufactured in Bradford, United Kingdom.
           </span>
           <div className="flex gap-6">
-            <a
-              href="https://www.sunflowermedical.co.uk/privacy-policy/"
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              href="/privacy"
               className="rounded py-1 transition-colors hover:text-[#1b1b18] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1b1b18]"
             >
               Privacy & cookies
-            </a>
-            <a
-              href="https://www.sunflowermedical.co.uk/wp-content/uploads/2025/03/TCs-01.04.25-1.pdf"
-              target="_blank"
-              rel="noreferrer"
+            </Link>
+            <Link
+              href="/terms"
               className="rounded py-1 transition-colors hover:text-[#1b1b18] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1b1b18]"
             >
               Terms
-            </a>
+            </Link>
             <a
               href="#top"
               className="rounded py-1 transition-colors hover:text-[#1b1b18] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1b1b18]"
