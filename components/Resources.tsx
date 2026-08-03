@@ -37,7 +37,7 @@ export default function Resources() {
     <section id="resources" className="relative py-24 sm:py-32">
       <div className="shell">
         <div className="grid gap-10 border-t border-[rgba(27,27,24,0.1)] pt-8 lg:grid-cols-[0.72fr_1.5fr] lg:gap-20">
-          <div className="lg:sticky lg:top-28 lg:self-start">
+          <div className="lg:sticky lg:top-[calc(var(--header-height)+1.5rem)] lg:self-start">
             <Reveal>
               <div className="eyebrow mb-5">Resources</div>
             </Reveal>

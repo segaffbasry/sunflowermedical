@@ -23,7 +23,11 @@ export default function CustomisationPage() {
 
       <section className="pb-24 sm:pb-32">
         <div className="shell grid gap-10 lg:grid-cols-[0.58fr_1.42fr] lg:gap-20">
-          <Reveal><div className="eyebrow lg:sticky lg:top-28">Tailored around the setting</div></Reveal>
+          <Reveal>
+            <div className="eyebrow lg:sticky lg:top-[calc(var(--header-height)+1.5rem)]">
+              Tailored around the setting
+            </div>
+          </Reveal>
           <div className="grid gap-8 sm:grid-cols-2">
             {customisationPage.paragraphs.map((paragraph, index) => (
               <Reveal key={paragraph} delay={index * 0.08}>

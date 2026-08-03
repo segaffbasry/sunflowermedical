@@ -24,7 +24,9 @@ export default function AboutPage() {
       <section className="pb-24 sm:pb-32">
         <div className="shell grid gap-12 lg:grid-cols-[0.6fr_1.4fr] lg:gap-20">
           <Reveal>
-            <div className="eyebrow lg:sticky lg:top-28">Concept to distribution</div>
+            <div className="eyebrow lg:sticky lg:top-[calc(var(--header-height)+1.5rem)]">
+              Concept to distribution
+            </div>
           </Reveal>
           <div className="grid gap-8 sm:grid-cols-2">
             {aboutPage.paragraphs.map((paragraph, index) => (

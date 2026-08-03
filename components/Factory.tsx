@@ -9,7 +9,7 @@ export default function Factory() {
     <section className="relative py-24 sm:py-32">
       <div className="shell">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1fr] lg:gap-16">
-          <div className="lg:sticky lg:top-28 lg:self-start">
+          <div className="lg:sticky lg:top-[calc(var(--header-height)+1.5rem)] lg:self-start">
             <Reveal>
               <div className="eyebrow mb-5">{about.eyebrow}</div>
             </Reveal>

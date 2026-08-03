@@ -34,12 +34,19 @@
 }
 
 :root {
-  --header-height: 92px;
+  --nav-height: 92px;
+  --announcement-height: 44px;
+  --header-height: calc(var(--nav-height) + var(--announcement-height));
+}
+
+:root[data-announcement="closed"] {
+  --announcement-height: 0px;
 }
 
 @media (min-width: 640px) {
   :root {
-    --header-height: 104px;
+    --nav-height: 104px;
+    --announcement-height: 44px;
   }
 }
 

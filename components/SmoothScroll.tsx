@@ -29,7 +29,12 @@ export default function SmoothScroll() {
       const el = document.querySelector(id);
       if (!el) return;
       e.preventDefault();
-      lenis.scrollTo(el as HTMLElement, { offset: -72 });
+      const headerOffset = Number.parseFloat(
+        getComputedStyle(document.documentElement).scrollPaddingTop,
+      );
+      lenis.scrollTo(el as HTMLElement, {
+        offset: Number.isFinite(headerOffset) ? -headerOffset : 0,
+      });
     };
     document.addEventListener("click", onClick);
 

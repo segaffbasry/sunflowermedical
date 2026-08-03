@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
+import AnnouncementBar from "./AnnouncementBar";
 import Logo from "./Logo";
 import Button from "./ui/Button";
 import { useUI } from "./UIProvider";
@@ -14,6 +15,18 @@ export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
+  const [announcementOpen, setAnnouncementOpen] = useState(true);
+
+  useEffect(() => {
+    document.documentElement.dataset.announcement = announcementOpen ? "open" : "closed";
+  }, [announcementOpen]);
+
+  useEffect(
+    () => () => {
+      delete document.documentElement.dataset.announcement;
+    },
+    [],
+  );
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -31,8 +44,18 @@ export default function Header() {
     return () => window.removeEventListener("keydown", onKey);
   }, [menu]);
 
+  const closeAnnouncement = () => {
+    document.documentElement.dataset.announcement = "closed";
+    setAnnouncementOpen(false);
+    window.requestAnimationFrame(() => {
+      document.getElementById("site-search-trigger")?.focus({ preventScroll: true });
+    });
+  };
+
   return (
     <header className="fixed inset-x-0 top-0 z-50">
+      {announcementOpen && <AnnouncementBar onClose={closeAnnouncement} />}
+
       <div
         className={`border-b border-[rgba(27,27,24,0.08)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           scrolled
@@ -40,7 +63,7 @@ export default function Header() {
             : "bg-[rgba(253,253,247,0.96)] backdrop-blur-md"
         }`}
       >
-        <div className="shell grid h-[var(--header-height)] grid-cols-[1fr_auto] items-center gap-5 xl:grid-cols-[1fr_auto_1fr]">
+        <div className="shell grid h-[var(--nav-height)] grid-cols-[1fr_auto] items-center gap-5 xl:grid-cols-[1fr_auto_1fr]">
           <Link href="/" aria-label="Sunflower Medical — home" className="justify-self-start">
             <Logo eager />
           </Link>
