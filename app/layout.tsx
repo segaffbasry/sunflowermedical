@@ -6,6 +6,7 @@ import { UIProvider } from "@/components/UIProvider";
 import MotionProvider from "@/components/MotionProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SearchOverlay from "@/components/SearchOverlay";
 import ShopPopup from "@/components/ShopPopup";
 import QuickView from "@/components/QuickView";
 
@@ -47,6 +48,7 @@ export default function RootLayout({
             <Header />
             {children}
             <Footer />
+            <SearchOverlay />
             <ShopPopup />
             <QuickView />
           </UIProvider>

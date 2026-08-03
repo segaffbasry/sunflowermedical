@@ -1,6 +1,6 @@
 /* The petal fan is the one piece of the existing identity worth keeping.
    Redrawn as vector so it stays crisp, can go monochrome on a dark ground,
-   and blooms in on load.
+   and can optionally bloom in where animation is appropriate.
 
    The bloom is a plain CSS opacity keyframe on purpose: each petal carries
    a static `transform` attribute for its rotation, and any JS/CSS transform

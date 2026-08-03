@@ -7,6 +7,7 @@ type Overlay = "search" | "shop" | null;
 
 type UIState = {
   overlay: Overlay;
+  openSearch: () => void;
   openShop: () => void;
   closeOverlay: () => void;
   quickView: Product | null;
@@ -22,6 +23,11 @@ export function UIProvider({ children }: { children: React.ReactNode }) {
 
   const closeOverlay = useCallback(() => setOverlay(null), []);
   const closeQuickView = useCallback(() => setQuickView(null), []);
+
+  const openSearch = useCallback(() => {
+    setQuickView(null);
+    setOverlay("search");
+  }, []);
 
   const openShop = useCallback(() => {
     setQuickView(null);
@@ -51,6 +57,11 @@ export function UIProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        openSearch();
+        return;
+      }
       if (e.key === "Escape") {
         setOverlay(null);
         setQuickView(null);
@@ -58,18 +69,19 @@ export function UIProvider({ children }: { children: React.ReactNode }) {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [openSearch]);
 
   const value = useMemo(
     () => ({
       overlay,
+      openSearch,
       openShop,
       closeOverlay,
       quickView,
       openQuickView,
       closeQuickView,
     }),
-    [overlay, openShop, closeOverlay, quickView, openQuickView, closeQuickView],
+    [overlay, openSearch, openShop, closeOverlay, quickView, openQuickView, closeQuickView],
   );
 
   return <UIContext.Provider value={value}>{children}</UIContext.Provider>;

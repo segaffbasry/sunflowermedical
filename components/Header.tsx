@@ -10,7 +10,7 @@ import { useUI } from "./UIProvider";
 import { nav } from "@/lib/content";
 
 export default function Header() {
-  const { openShop } = useUI();
+  const { overlay, openSearch, openShop } = useUI();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
@@ -32,12 +32,7 @@ export default function Header() {
   }, [menu]);
 
   return (
-    <motion.header
-      initial={{ y: -24, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed inset-x-0 top-0 z-50"
-    >
+    <header className="fixed inset-x-0 top-0 z-50">
       <div
         className={`border-b border-[rgba(27,27,24,0.08)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           scrolled
@@ -45,12 +40,12 @@ export default function Header() {
             : "bg-[rgba(253,253,247,0.96)] backdrop-blur-md"
         }`}
       >
-        <div className="shell grid h-[72px] grid-cols-[1fr_auto] items-center gap-5 lg:grid-cols-[1fr_auto_1fr]">
+        <div className="shell grid h-[72px] grid-cols-[1fr_auto] items-center gap-5 xl:grid-cols-[1fr_auto_1fr]">
           <Link href="/" aria-label="Sunflower Medical — home" className="justify-self-start">
-            <Logo animate />
+            <Logo />
           </Link>
 
-          <nav className="hidden items-center gap-1.5 lg:flex">
+          <nav className="hidden items-center gap-1.5 xl:flex">
             {nav.map((item) => (
               <Link
                 key={item.label}
@@ -68,9 +63,28 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2 justify-self-end">
-            <Button variant="primary" size="sm" onClick={openShop}>
-              Shop
-            </Button>
+            <button
+              id="site-search-trigger"
+              type="button"
+              onClick={openSearch}
+              aria-label="Search products"
+              aria-haspopup="dialog"
+              aria-expanded={overlay === "search"}
+              aria-controls="site-search-dialog"
+              className="flex h-11 w-11 items-center justify-center gap-2 rounded-full text-[#4a4a44] ring-1 ring-inset ring-[rgba(27,27,24,0.14)] transition-[background-color,color] hover:bg-[rgba(27,27,24,0.055)] hover:text-[#1b1b18] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1b1b18] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fdfdf7] xl:w-auto xl:px-4"
+            >
+              <svg width="17" height="17" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <circle cx="7.1" cy="7.1" r="4.6" stroke="currentColor" strokeWidth="1.35" />
+                <path d="m10.6 10.6 3 3" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round" />
+              </svg>
+              <span className="hidden text-[0.875rem] font-medium xl:inline">Search</span>
+            </button>
+
+            <div className="hidden sm:block">
+              <Button variant="primary" size="sm" onClick={openShop}>
+                Shop
+              </Button>
+            </div>
 
             <button
               type="button"
@@ -78,7 +92,7 @@ export default function Header() {
               aria-label="Menu"
               aria-expanded={menu}
               aria-controls="mobile-navigation"
-              className="ml-1 flex h-11 w-11 items-center justify-center rounded-full ring-1 ring-inset ring-[rgba(27,27,24,0.12)] transition-colors hover:bg-[rgba(27,27,24,0.04)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1b1b18] lg:hidden"
+              className="ml-1 flex h-11 w-11 items-center justify-center rounded-full ring-1 ring-inset ring-[rgba(27,27,24,0.12)] transition-colors hover:bg-[rgba(27,27,24,0.04)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1b1b18] xl:hidden"
             >
               <span className="relative block h-[9px] w-[16px]">
                 <span
@@ -105,7 +119,7 @@ export default function Header() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden border-b border-[rgba(27,27,24,0.08)] bg-[#fdfdf7] lg:hidden"
+            className="overflow-hidden border-b border-[rgba(27,27,24,0.08)] bg-[#fdfdf7] xl:hidden"
           >
             <nav className="shell flex max-h-[calc(100svh-72px)] flex-col gap-1 overflow-y-auto py-3">
               {nav.map((item) => (
@@ -123,10 +137,23 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
+              <div className="mt-2 border-t border-[rgba(27,27,24,0.08)] pt-3 sm:hidden">
+                <Button
+                  variant="primary"
+                  size="sm"
+                  className="w-full"
+                  onClick={() => {
+                    setMenu(false);
+                    openShop();
+                  }}
+                >
+                  Shop
+                </Button>
+              </div>
             </nav>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 }

@@ -1,28 +1,20 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { useUI } from "./UIProvider";
+import { useDialogFocus } from "./ui/useDialogFocus";
 import { products, searchSuggestions } from "@/lib/content";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export default function SearchOverlay() {
-  const { overlay, closeOverlay, openQuickView } = useUI();
+  const { overlay, closeOverlay, quickView, openQuickView } = useUI();
   const open = overlay === "search";
   const [q, setQ] = useState("");
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (open) {
-      const t = setTimeout(() => {
-        setQ("");
-        inputRef.current?.focus();
-      }, 260);
-      return () => clearTimeout(t);
-    }
-  }, [open]);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useDialogFocus(dialogRef, open);
 
   /* Live filter across category name, sub-types and blurb. */
   const results = useMemo(() => {
@@ -34,7 +26,12 @@ export default function SearchOverlay() {
   }, [q]);
 
   return (
-    <AnimatePresence>
+    <AnimatePresence
+      onExitComplete={() => {
+        setQ("");
+        if (!quickView) document.getElementById("site-search-trigger")?.focus();
+      }}
+    >
       {open && (
         <motion.div
           className="fixed inset-0 z-[70]"
@@ -50,7 +47,13 @@ export default function SearchOverlay() {
           />
 
           <motion.div
-            className="relative mx-auto max-h-[100dvh] w-full overflow-y-auto bg-[#fdfdf7] shadow-[0_24px_80px_-24px_rgba(27,27,24,0.35)]"
+            ref={dialogRef}
+            id="site-search-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Search products"
+            tabIndex={-1}
+            className="relative mx-auto max-h-[100dvh] w-full overflow-y-auto overscroll-contain bg-[#fdfdf7] shadow-[0_24px_80px_-24px_rgba(27,27,24,0.35)]"
             variants={{
               hidden: { y: "-100%" },
               show: { y: "0%" },
@@ -59,25 +62,30 @@ export default function SearchOverlay() {
           >
             <div className="shell py-6">
               {/* Input row */}
-              <div className="flex items-center gap-4 border-b border-[rgba(27,27,24,0.12)] pb-5 pt-2">
+              <div className="flex items-center gap-3 border-b border-[rgba(27,27,24,0.12)] pb-5 pt-2 transition-colors focus-within:border-[#1b1b18] sm:gap-4">
                 <svg width="22" height="22" viewBox="0 0 16 16" fill="none" className="shrink-0 text-[#61615b]">
                   <circle cx="7.2" cy="7.2" r="4.7" stroke="currentColor" strokeWidth="1.3" />
                   <path d="m10.8 10.8 3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
                 </svg>
                 <input
-                  ref={inputRef}
+                  type="search"
+                  aria-label="Search products"
                   value={q}
                   onChange={(e) => setQ(e.target.value)}
-                  placeholder="Search couches, trolleys, screens, cabinets…"
-                  className="display display-md w-full bg-transparent text-[#1b1b18] placeholder:text-[#c4c2b8] focus:outline-none"
+                  placeholder="Search products…"
+                  className="display display-md min-w-0 flex-1 bg-transparent text-[#1b1b18] placeholder:text-[#73736d] focus:outline-none"
                 />
                 <button
                   type="button"
                   onClick={closeOverlay}
-                  className="flex h-10 shrink-0 items-center gap-2 rounded-full px-4 text-[0.8125rem] text-[#61615b] ring-1 ring-inset ring-[rgba(27,27,24,0.14)] transition-colors hover:bg-[rgba(27,27,24,0.04)] hover:text-[#1b1b18]"
+                  aria-label="Close search"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center gap-2 rounded-full text-[0.8125rem] text-[#61615b] ring-1 ring-inset ring-[rgba(27,27,24,0.14)] transition-colors hover:bg-[rgba(27,27,24,0.04)] hover:text-[#1b1b18] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1b1b18] sm:w-auto sm:px-4"
                 >
-                  Close
-                  <kbd className="font-sans text-[0.625rem] text-[#73736d]">ESC</kbd>
+                  <svg width="13" height="13" viewBox="0 0 12 12" fill="none" className="sm:hidden" aria-hidden="true">
+                    <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                  </svg>
+                  <span className="hidden sm:inline">Close</span>
+                  <kbd className="hidden font-sans text-[0.625rem] text-[#73736d] sm:inline">ESC</kbd>
                 </button>
               </div>
 
@@ -92,7 +100,7 @@ export default function SearchOverlay() {
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.25 + i * 0.04, ease: EASE }}
-                    className="rounded-full bg-[rgba(27,27,24,0.045)] px-3.5 py-1.5 text-[0.8125rem] text-[#4a4a44] transition-colors duration-200 hover:bg-[rgba(255,201,55,0.32)] hover:text-[#1b1b18]"
+                    className="min-h-11 rounded-full bg-[rgba(27,27,24,0.045)] px-3.5 py-2 text-[0.8125rem] text-[#4a4a44] transition-colors duration-200 hover:bg-[rgba(255,201,55,0.32)] hover:text-[#1b1b18]"
                   >
                     {s}
                   </motion.button>
