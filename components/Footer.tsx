@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="shell">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_2fr]">
           <div>
-            <Logo className="w-52 sm:w-56" />
+            <Logo className="w-[9.75rem] sm:w-[10.5rem]" />
             <p className="mt-5 max-w-xs text-[0.875rem] leading-relaxed text-[#61615b]">
               UK manufacturer of healthcare furniture, specialising in customisation and customer
               branding.

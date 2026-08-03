@@ -62,7 +62,7 @@ export function Mark({
 }
 
 export default function Logo({
-  className = "w-[9.75rem] sm:w-44",
+  className = "w-[7.3125rem] sm:w-[8.25rem]",
   eager = false,
 }: {
   className?: string;
