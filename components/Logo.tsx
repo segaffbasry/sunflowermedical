@@ -63,10 +63,10 @@ export function Mark({
 
 export default function Logo({
   className = "w-[9.75rem] sm:w-44",
-  preload = false,
+  eager = false,
 }: {
   className?: string;
-  preload?: boolean;
+  eager?: boolean;
 }) {
   return (
     <Image
@@ -74,7 +74,7 @@ export default function Logo({
       width={300}
       height={148}
       alt="Sunflower — UK Manufacturer · Healthcare Furniture"
-      preload={preload}
+      loading={eager ? "eager" : "lazy"}
       unoptimized
       className={`h-auto max-w-full ${className}`}
     />

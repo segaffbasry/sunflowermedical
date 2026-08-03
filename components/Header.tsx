@@ -42,7 +42,7 @@ export default function Header() {
       >
         <div className="shell grid h-[var(--header-height)] grid-cols-[1fr_auto] items-center gap-5 xl:grid-cols-[1fr_auto_1fr]">
           <Link href="/" aria-label="Sunflower Medical — home" className="justify-self-start">
-            <Logo preload />
+            <Logo eager />
           </Link>
 
           <nav className="hidden items-center gap-1.5 xl:flex">
