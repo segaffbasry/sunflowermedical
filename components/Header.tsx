@@ -77,7 +77,7 @@ export default function Header() {
                 <circle cx="7.1" cy="7.1" r="4.6" stroke="currentColor" strokeWidth="1.35" />
                 <path d="m10.6 10.6 3 3" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round" />
               </svg>
-              <span className="hidden text-[0.875rem] font-medium xl:inline">Search</span>
+              <span className="hidden text-[0.875rem] font-medium xl:inline">Search (⌘+K)</span>
             </button>
 
             <div className="hidden sm:block">
