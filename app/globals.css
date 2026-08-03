@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Sunflower Medical — design tokens
+   A calm, precise Inter-led system with generous editorial spacing.
+------------------------------------------------------------------ */
+
+@theme inline {
+  /* Ground */
+  --color-cream: #fdfdf7;
+  --color-surface: #f5f5f0;
+
+  /* Ink */
+  --color-ink: #1b1b18;
+  --color-ink-soft: #4a4a44;
+  --color-muted: #61615b;
+  --color-faint: #73736d;
+
+  /* Line */
+  --color-line: rgba(27, 27, 24, 0.1);
+  --color-line-strong: rgba(27, 27, 24, 0.18);
+
+  /* Brand accent — the one thing we keep */
+  --color-sun: #ffc937;
+  --color-sun-deep: #e8ae14;
+  --color-sun-wash: rgba(255, 201, 55, 0.16);
+  --color-sun-mark: rgba(255, 201, 55, 0.42);
+  --color-action: #2463eb;
+  --color-action-deep: #1d54cf;
+
+  /* Type */
+  --font-display: var(--font-inter), Arial, sans-serif;
+  --font-sans: var(--font-inter), Arial, sans-serif;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  background: #fdfdf7;
+  scroll-padding-top: 72px;
+}
+
+body {
+  background: #fdfdf7;
+  color: #1b1b18;
+  font-family: var(--font-inter), Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+[id] {
+  scroll-margin-top: 72px;
+}
+
+body[data-locked="true"] {
+  overflow: hidden;
+}
+
+a[href],
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]),
+summary,
+select {
+  cursor: pointer;
+}
+
+button:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+::selection {
+  background: #ffc937;
+  color: #1b1b18;
+}
+
+/* These live in the components layer so that Tailwind utilities always beat
+   them. Unlayered rules outrank every layered one, so an unlayered
+   `.display { color }` would silently win over `text-[#fdfdf7]` and paint
+   graphite text onto a graphite panel. */
+@layer components {
+  /* ---------------- Type scale ---------------- */
+
+  .display {
+    font-family: var(--font-inter), Arial, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+    color: #1b1b18;
+  }
+
+  .display-xl {
+    font-size: clamp(2.65rem, 5.4vw, 5.35rem);
+    line-height: 0.98;
+  }
+  .display-lg {
+    font-size: clamp(2rem, 3.8vw, 3.75rem);
+    line-height: 1.02;
+  }
+  .display-md {
+    font-size: clamp(1.65rem, 2.8vw, 2.75rem);
+    line-height: 1.08;
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: #61615b;
+  }
+
+  .lede {
+    font-size: clamp(1rem, 1.2vw, 1.125rem);
+    line-height: 1.55;
+    color: #4a4a44;
+    letter-spacing: -0.012em;
+  }
+
+  /* Yellow marker behind a word — the doctronic highlight-pill idea */
+  .marker {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .marker > span {
+    position: relative;
+    z-index: 1;
+  }
+  .marker::before {
+    content: "";
+    position: absolute;
+    inset: 0.08em -0.28em 0.1em;
+    background: rgba(255, 201, 55, 0.42);
+    border-radius: 0.5em;
+    transform-origin: left center;
+  }
+
+  /* ---------------- Layout ---------------- */
+
+  .shell {
+    width: 100%;
+    max-width: 118rem;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 5rem);
+  }
+
+  /* Raised pill CTA with a single light sweep on hover. */
+  .cta-button {
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .cta-button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      105deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.26) 50%,
+      transparent 80%
+    );
+    pointer-events: none;
+    transform: translateX(-155%);
+  }
+
+  .cta-button:hover::before {
+    animation: cta-shimmer 0.48s ease-out forwards;
+  }
+
+  .cta-button > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .pill-rail {
+    scrollbar-width: none;
+  }
+
+  .pill-rail::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes cta-shimmer {
+  from {
+    transform: translateX(-155%);
+  }
+  to {
+    transform: translateX(155%);
+  }
+}
+
+/* ---------------- Scrollbar ---------------- */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #fdfdf7;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(27, 27, 24, 0.16);
+  border-radius: 99px;
+  border: 3px solid #fdfdf7;
+}
+
+/* Failsafe for print / PDF export / screenshot tooling: those contexts never
+   scroll, so scroll-triggered entrances would otherwise stay at opacity 0 and
+   the page would export blank below the fold. */
+@media print {
+  [style*="opacity:0"],
+  [style*="opacity: 0"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
