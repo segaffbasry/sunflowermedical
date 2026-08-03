@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import Button from "./ui/Button";
+import { useUI } from "./UIProvider";
 import { hero, products, proof } from "@/lib/content";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -17,6 +18,7 @@ const BENTO_TONE = ["bg-[#f2f2ed]", "bg-[#e9effd]", "bg-[#f7efd5]", "bg-[#edf1ea
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
+  const { openQuickView } = useUI();
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "16%"]);
@@ -125,35 +127,40 @@ export default function Hero() {
       <motion.div style={reduceMotion ? undefined : { y: imgY, opacity: fade }} className="shell relative pb-8">
         <div className="grid grid-cols-2 gap-3 md:auto-rows-[9.5rem] md:grid-cols-12 lg:auto-rows-[10.5rem] lg:gap-4">
           {products.slice(0, 4).map((p, i) => (
-            <motion.div
+            <motion.button
               key={p.slug}
+              type="button"
+              onClick={() => openQuickView(p)}
+              aria-label={`View details for ${p.name}`}
+              aria-haspopup="dialog"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
+              whileTap={reduceMotion ? undefined : { scale: 0.992 }}
               transition={{ duration: 1, delay: 1.1 + i * 0.09, ease: EASE }}
-              className={`group relative aspect-[5/4] overflow-hidden rounded-[24px] ring-1 ring-inset ring-[rgba(27,27,24,0.07)] sm:rounded-[28px] md:aspect-auto ${BENTO_LAYOUT[i]} ${BENTO_TONE[i]}`}
+              className={`group relative aspect-[5/4] w-full touch-manipulation overflow-hidden rounded-[24px] text-left ring-1 ring-inset ring-[rgba(27,27,24,0.07)] transition-[box-shadow,filter] duration-300 hover:brightness-[0.985] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1b1b18] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fdfdf7] sm:rounded-[28px] md:aspect-auto ${BENTO_LAYOUT[i]} ${BENTO_TONE[i]}`}
             >
               <Image
                 src={p.image}
-                alt={p.name}
+                alt=""
                 fill
                 sizes="(max-width: 768px) 45vw, (max-width: 1280px) 46vw, 44vw"
                 loading={i < 2 ? "eager" : "lazy"}
                 fetchPriority={i === 0 ? "high" : "auto"}
-                className={`object-contain mix-blend-multiply transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.045] ${
+                className={`pointer-events-none object-contain mix-blend-multiply transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.045] group-focus-visible:scale-[1.045] ${
                   i === 0 ? "p-6 pb-16 md:p-9 md:pb-16" : "p-5 pb-14"
                 }`}
               />
 
-              <div className="absolute right-3 top-3 rounded-full bg-[rgba(253,253,247,0.9)] px-3 py-1.5 text-[0.6875rem] font-medium text-[#4a4a44] shadow-[0_4px_14px_-10px_rgba(27,27,24,0.35)] backdrop-blur-sm sm:right-4 sm:top-4">
+              <div className="pointer-events-none absolute right-3 top-3 rounded-full bg-[rgba(253,253,247,0.9)] px-3 py-1.5 text-[0.6875rem] font-medium text-[#4a4a44] shadow-[0_4px_14px_-10px_rgba(27,27,24,0.35)] backdrop-blur-sm sm:right-4 sm:top-4">
                 {p.count}
               </div>
 
-              <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4">
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 p-3 sm:p-4">
                 <span className="inline-flex max-w-full items-center rounded-full bg-[#1b1b18] px-3.5 py-2 text-[0.75rem] font-medium tracking-[-0.01em] text-[#fdfdf7] shadow-[0_8px_24px_-14px_rgba(27,27,24,0.65)] sm:px-4">
                   <span className="overflow-hidden text-ellipsis whitespace-nowrap">{p.short}</span>
                 </span>
               </div>
-            </motion.div>
+            </motion.button>
           ))}
         </div>
 

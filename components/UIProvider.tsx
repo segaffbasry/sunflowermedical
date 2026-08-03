@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import type { Product } from "@/lib/content";
 
 type Overlay = "search" | "shop" | null;
@@ -20,24 +20,39 @@ const UIContext = createContext<UIState | null>(null);
 export function UIProvider({ children }: { children: React.ReactNode }) {
   const [overlay, setOverlay] = useState<Overlay>(null);
   const [quickView, setQuickView] = useState<Product | null>(null);
+  const returnFocusRef = useRef<HTMLElement | null>(null);
+
+  const rememberTrigger = useCallback(() => {
+    const active = document.activeElement;
+    if (
+      active instanceof HTMLElement &&
+      active !== document.body &&
+      !active.closest('[role="dialog"]')
+    ) {
+      returnFocusRef.current = active;
+    }
+  }, []);
 
   const closeOverlay = useCallback(() => setOverlay(null), []);
   const closeQuickView = useCallback(() => setQuickView(null), []);
 
   const openSearch = useCallback(() => {
+    rememberTrigger();
     setQuickView(null);
     setOverlay("search");
-  }, []);
+  }, [rememberTrigger]);
 
   const openShop = useCallback(() => {
+    rememberTrigger();
     setQuickView(null);
     setOverlay("shop");
-  }, []);
+  }, [rememberTrigger]);
 
   const openQuickView = useCallback((p: Product) => {
+    rememberTrigger();
     setOverlay(null);
     setQuickView(p);
-  }, []);
+  }, [rememberTrigger]);
 
   const anyOpen = overlay !== null || quickView !== null;
 
@@ -48,7 +63,17 @@ export function UIProvider({ children }: { children: React.ReactNode }) {
     background.forEach((element) => {
       element.inert = anyOpen;
     });
+
+    const trigger = !anyOpen ? returnFocusRef.current : null;
+    const restoreTimer = trigger
+      ? window.setTimeout(() => {
+          if (trigger.isConnected) trigger.focus();
+          returnFocusRef.current = null;
+        }, 760)
+      : undefined;
+
     return () => {
+      if (restoreTimer) window.clearTimeout(restoreTimer);
       background.forEach((element) => {
         element.inert = false;
       });
