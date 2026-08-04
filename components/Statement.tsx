@@ -32,14 +32,14 @@ export default function Statement() {
           </div>
         </div>
 
-        {/* Stat row */}
-        <div className="mt-20 grid gap-px overflow-hidden rounded-2xl bg-[rgba(27,27,24,0.09)] sm:grid-cols-2 lg:grid-cols-4">
+        {/* Each proof point gets its own solid Sunflower panel. */}
+        <div id="proof-points" className="mt-20 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {proof.stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.07} className="bg-[#fdfdf7]">
-              <div className="h-full bg-[#fdfdf7] p-6 transition-colors duration-300 hover:bg-[#f7f6ef]">
+            <Reveal key={s.label} delay={i * 0.07} className="h-full">
+              <div className="h-full min-h-44 rounded-[20px] bg-[#ffc937] p-6 sm:p-7">
                 <div className="display text-[2.6rem] leading-none">{s.value}</div>
                 <div className="mt-3 text-[0.875rem] font-medium text-[#1b1b18]">{s.label}</div>
-                <div className="mt-1 text-[0.8125rem] text-[#61615b]">{s.note}</div>
+                <div className="mt-1 text-[0.8125rem] text-[#4a4a44]">{s.note}</div>
               </div>
             </Reveal>
           ))}
