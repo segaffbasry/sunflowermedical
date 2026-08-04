@@ -12,10 +12,10 @@ const settings = {
     position: "50% 64%",
   },
   wide: {
-    image: "/photography/waiting-area-yellow.png",
-    alt: "Blue and yellow seating in a hospital waiting area",
-    label: "High-traffic spaces",
-    position: "50% 58%",
+    image: "/photography/waiting-area-blue-screens.png",
+    alt: "Light blue beam seating and mobile privacy screens in a bright healthcare reception area",
+    label: "Flexible waiting spaces",
+    position: "50% 68%",
   },
   quiet: {
     image: "/photography/consultation-waiting-room.png",
