@@ -9,21 +9,25 @@ const factoryScenes = [
     image: "/photography/factory-cad.png",
     alt: "Sunflower Medical product design work in CAD",
     label: "Design and CAD",
+    position: "50% 50%",
   },
   {
     image: "/photography/factory-sheet-handling.jpeg",
     alt: "A Sunflower Medical technician handling sheet material in the Bradford factory",
     label: "In-house fabrication",
+    position: "50% 50%",
   },
   {
     image: "/photography/factory-assembly.png",
     alt: "A representative view of a clinical trolley being assembled",
     label: "Final assembly",
+    position: "50% 50%",
   },
   {
-    image: "/photography/clinical-room-yellow.jpeg",
-    alt: "A furnished clinical room with a yellow treatment couch and trolley",
+    image: "/photography/treatment-bay.jpeg",
+    alt: "Clinical bay with a hospital bed, privacy curtain and monitoring equipment",
     label: "Ready for clinical spaces",
+    position: "58% 58%",
   },
 ];
 
@@ -85,6 +89,7 @@ export default function Factory() {
                     fill
                     sizes="(max-width: 639px) 92vw, (max-width: 1023px) 45vw, 24vw"
                     loading={i === 0 ? "eager" : "lazy"}
+                    style={{ objectPosition: scene.position }}
                     className="object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.045]"
                   />
                   <figcaption className="absolute bottom-3 left-3 rounded-full bg-[rgba(253,253,247,0.92)] px-3.5 py-2 text-[0.75rem] font-medium text-[#1b1b18] shadow-[0_8px_24px_-18px_rgba(27,27,24,0.7)] sm:bottom-4 sm:left-4">

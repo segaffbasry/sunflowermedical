@@ -16,6 +16,7 @@ const BENTO_LAYOUT = [
   "col-span-2 aspect-[16/7] md:col-span-3 md:row-span-1 md:aspect-auto",
 ];
 const BENTO_TONE = ["bg-[#f2f2ed]", "bg-[#e9effd]", "bg-[#f7efd5]", "bg-[#edf1ea]"];
+const heroProducts = [products[1], products[0], products[2], products[3]];
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -136,7 +137,7 @@ export default function Hero() {
       {/* Asymmetric product bento, inspired by Holo's generous feature cards. */}
       <motion.div style={reduceMotion ? undefined : { y: imgY, opacity: fade }} className="shell relative pb-8">
         <div className="grid grid-cols-2 gap-3 md:auto-rows-[9.5rem] md:grid-cols-12 lg:auto-rows-[10.5rem] lg:gap-4">
-          {products.slice(0, 4).map((p, i) => (
+          {heroProducts.map((p, i) => (
             <motion.button
               key={p.slug}
               type="button"
@@ -150,7 +151,7 @@ export default function Hero() {
               className={`group relative aspect-[5/4] w-full touch-manipulation overflow-hidden rounded-[24px] text-left ring-1 ring-inset ring-[rgba(27,27,24,0.07)] transition-[box-shadow,filter] duration-300 hover:brightness-[0.985] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1b1b18] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fdfdf7] sm:rounded-[28px] md:aspect-auto ${BENTO_LAYOUT[i]} ${BENTO_TONE[i]}`}
             >
               <Image
-                src={i === 0 ? "/photography/clinical-room.png" : p.image}
+                src={i === 0 ? "/photography/clinic-reception.png" : p.image}
                 alt=""
                 fill
                 sizes={i === 0 ? "(max-width: 768px) 92vw, 48vw" : "(max-width: 768px) 45vw, (max-width: 1280px) 46vw, 44vw"}
@@ -158,7 +159,7 @@ export default function Hero() {
                 fetchPriority={i === 0 ? "high" : "auto"}
                 className={`pointer-events-none transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.045] group-focus-visible:scale-[1.045] ${
                   i === 0
-                    ? "object-cover object-center"
+                    ? "object-cover object-[50%_54%]"
                     : "object-contain p-5 pb-14 mix-blend-multiply"
                 }`}
               />
