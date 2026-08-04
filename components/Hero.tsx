@@ -34,19 +34,19 @@ export default function Hero() {
     >
       <div className="hero-intro shell relative isolate flex flex-col justify-center overflow-hidden pb-[clamp(1rem,2.5svh,2rem)] pt-[clamp(1.5rem,5svh,5rem)]">
         <div
-          className="pointer-events-none absolute inset-y-0 left-0 right-0 -z-10 overflow-hidden md:left-auto md:w-[68%]"
+          className="pointer-events-none absolute inset-y-0 left-0 right-0 -z-10 overflow-hidden md:left-auto md:w-[58%] lg:w-[52%]"
           aria-hidden="true"
         >
           <Image
-            src="/photography/treatment-room-hero.png"
+            src="/photography/clinical-corridor.jpeg"
             alt=""
             fill
-            sizes="(max-width: 767px) 100vw, (min-width: 1888px) 1278px, 68vw"
+            sizes="(max-width: 767px) 100vw, (max-width: 1023px) 58vw, 52vw"
             loading="eager"
             fetchPriority="high"
-            className="object-cover object-[58%_50%] opacity-[0.22] md:object-[54%_54%] md:opacity-[0.72]"
+            className="object-cover object-[44%_50%] opacity-[0.28] md:object-[50%_48%] md:opacity-90"
           />
-          <div className="absolute inset-0 bg-[rgba(253,253,247,0.32)] md:bg-[linear-gradient(90deg,#fdfdf7_0%,rgba(253,253,247,0.92)_24%,rgba(253,253,247,0.56)_58%,rgba(253,253,247,0.28)_100%)]" />
+          <div className="absolute inset-0 bg-[rgba(253,253,247,0.32)] md:bg-[linear-gradient(90deg,#fdfdf7_0%,rgba(253,253,247,0.65)_20%,rgba(253,253,247,0.25)_40%,rgba(253,253,247,0.05)_100%)]" />
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-[#fdfdf7]" />
         </div>
 
