@@ -25,7 +25,7 @@ export const nav = [
 export const hero = {
   lines: ["Healthcare furniture,", "made in Britain,", "made yours."],
   markerWord: 2, // index of the line carrying the yellow marker
-  sub: "Examination couches, trolleys, screens and clinical storage — manufactured in Bradford and finished in your colours, your fabrics, your branding.",
+  sub: "Examination couches, trolleys, screens and clinical storage are manufactured in Bradford and finished in your colours, your fabrics and your branding.",
   primary: { label: "Browse the range", href: "#catalogue" },
   secondary: { label: "Request a catalogue", href: "#resources" },
   scrollCue: "Scroll",
@@ -35,7 +35,7 @@ export const statement = {
   eyebrow: "Who we are",
   heading: "We build clinical furniture that lasts a decade and looks like it belongs to you.",
   body: [
-    "Sunflower Medical designs and manufactures healthcare furniture at our own facility in Bradford. Examination and treatment couches, certified seating, medical trolleys, privacy screens, medicine cabinets and HTM compliant storage — built to order, not pulled from a container.",
+    "Sunflower Medical designs and manufactures healthcare furniture at our own facility in Bradford. Examination and treatment couches, certified seating, medical trolleys, privacy screens, medicine cabinets and HTM compliant storage. Everything is built to order, not pulled from a container.",
     "Because we own the line, we can change it. Frame colours, upholstery, laminates, handles, dimensions and your own branding, applied at the point of manufacture rather than bolted on afterwards.",
   ],
   cta: { label: "More about the factory", href: "/about" },
@@ -216,7 +216,7 @@ export const products: Product[] = [
 export const customisation = {
   eyebrow: "What makes us different",
   heading: "Standard is where we start.",
-  body: "Most suppliers sell you a catalogue number. We change the product to suit the room — and put your name on it. Specify a frame colour, an upholstery, a laminate, a set of dimensions and your own logo, and it is applied on the line, not in a workshop afterwards.",
+  body: "Most suppliers sell you a catalogue number. We change the product to suit the room and put your name on it. Specify a frame colour, an upholstery, a laminate, a set of dimensions and your own logo, and it is applied on the line, not in a workshop afterwards.",
   steps: [
     {
       n: "01",
@@ -314,7 +314,7 @@ export const resources = [
 
 export const footCta = {
   heading: ["Looking for information", "about our products?"],
-  body: "Send us the room, the budget and the deadline. We will come back with a specification and a price — not a brochure.",
+  body: "Send us the room, the budget and the deadline. We will come back with a specification and a price, not a brochure.",
   primary: { label: "Talk to the team", href: "/contact" },
   secondary: { label: company.phone, href: `tel:${company.phone.replace(/[^+\d]/g, "")}` },
 };

@@ -64,7 +64,7 @@ export default function Header() {
         }`}
       >
         <div className="shell grid h-[var(--nav-height)] grid-cols-[1fr_auto] items-center gap-5 xl:grid-cols-[1fr_auto_1fr]">
-          <Link href="/" aria-label="Sunflower Medical — home" className="justify-self-start">
+          <Link href="/" aria-label="Sunflower Medical home" className="justify-self-start">
             <Logo eager />
           </Link>
 

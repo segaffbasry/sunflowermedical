@@ -73,7 +73,7 @@ export default function Logo({
       src="/sunflower-medical-logo.png"
       width={300}
       height={148}
-      alt="Sunflower — UK Manufacturer · Healthcare Furniture"
+      alt="Sunflower Medical. UK manufacturer of healthcare furniture."
       loading={eager ? "eager" : "lazy"}
       unoptimized
       className={`h-auto max-w-full ${className}`}

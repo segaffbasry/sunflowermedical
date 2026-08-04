@@ -21,13 +21,13 @@ const inter = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.sunflowermedical.co.uk"),
   title: {
-    default: "Sunflower Medical — Healthcare furniture, made in Britain",
+    default: "Sunflower Medical | Healthcare furniture, made in Britain",
     template: "%s | Sunflower Medical",
   },
   description:
     "UK manufacturer of examination couches, medical trolleys, privacy screens, medicine cabinets and HTM compliant clinical storage. Built to order in Bradford and finished in your branding.",
   openGraph: {
-    title: "Sunflower Medical — Healthcare furniture, made in Britain",
+    title: "Sunflower Medical | Healthcare furniture, made in Britain",
     description:
       "Healthcare furniture designed and manufactured in Bradford, with custom colours, finishes and branding.",
     type: "website",

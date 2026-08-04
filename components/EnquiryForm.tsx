@@ -30,7 +30,7 @@ export default function EnquiryForm({
     const firstName = value("firstName");
     const lastName = value("lastName");
     const company = value("company");
-    const subject = `${title} — ${company || `${firstName} ${lastName}`.trim()}`;
+    const subject = `${title}: ${company || `${firstName} ${lastName}`.trim()}`;
     const body = [
       `Name: ${firstName} ${lastName}`.trim(),
       `Email: ${value("email")}`,

@@ -2,11 +2,34 @@
 
 import Image from "next/image";
 import Reveal, { RevealWords } from "./ui/Reveal";
-import { about, products } from "@/lib/content";
+import { about } from "@/lib/content";
+
+const factoryScenes = [
+  {
+    image: "/photography/factory-cad.png",
+    alt: "Sunflower Medical product design work in CAD",
+    label: "Design and CAD",
+  },
+  {
+    image: "/photography/factory-sheet-handling.jpeg",
+    alt: "A Sunflower Medical technician handling sheet material in the Bradford factory",
+    label: "In-house fabrication",
+  },
+  {
+    image: "/photography/factory-assembly.png",
+    alt: "A representative view of a clinical trolley being assembled",
+    label: "Final assembly",
+  },
+  {
+    image: "/photography/clinical-room-yellow.jpeg",
+    alt: "A furnished clinical room with a yellow treatment couch and trolley",
+    label: "Ready for clinical spaces",
+  },
+];
 
 export default function Factory() {
   return (
-    <section className="relative py-24 sm:py-32">
+    <section id="factory" className="relative py-24 sm:py-32">
       <div className="shell">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1fr] lg:gap-16">
           <div className="lg:sticky lg:top-[calc(var(--header-height)+1.5rem)] lg:self-start">
@@ -47,23 +70,27 @@ export default function Factory() {
             </Reveal>
           </div>
 
-          {/* Offset image stack */}
-          <div className="grid grid-cols-2 gap-4">
-            {[products[8], products[2], products[7], products[6]].map((p, i) => (
+          {/* Real spaces and real process replace isolated catalogue cut-outs here. */}
+          <div className="grid gap-4 sm:grid-cols-2">
+            {factoryScenes.map((scene, i) => (
               <Reveal
-                key={p.slug}
+                key={scene.label}
                 delay={i * 0.08}
                 className={i % 2 === 1 ? "sm:translate-y-10" : ""}
               >
-                <div className="group relative aspect-[3/4] overflow-hidden rounded-2xl bg-white ring-1 ring-inset ring-[rgba(27,27,24,0.08)]">
+                <figure className="group relative aspect-[4/3] overflow-hidden rounded-[22px] bg-[#ecece7] ring-1 ring-inset ring-[rgba(27,27,24,0.08)]">
                   <Image
-                    src={p.image}
-                    alt={p.name}
+                    src={scene.image}
+                    alt={scene.alt}
                     fill
-                    sizes="(max-width: 768px) 45vw, 24vw"
-                    className="object-contain p-6 transition-transform duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
+                    sizes="(max-width: 639px) 92vw, (max-width: 1023px) 45vw, 24vw"
+                    loading={i === 0 ? "eager" : "lazy"}
+                    className="object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.045]"
                   />
-                </div>
+                  <figcaption className="absolute bottom-3 left-3 rounded-full bg-[rgba(253,253,247,0.92)] px-3.5 py-2 text-[0.75rem] font-medium text-[#1b1b18] shadow-[0_8px_24px_-18px_rgba(27,27,24,0.7)] sm:bottom-4 sm:left-4">
+                    {scene.label}
+                  </figcaption>
+                </figure>
               </Reveal>
             ))}
           </div>

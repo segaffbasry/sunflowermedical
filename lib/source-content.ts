@@ -20,7 +20,7 @@ export const aboutPage = {
     "UK based healthcare furniture manufacturer with a specialty in customisation and customer branding.",
   paragraphs: [
     "Based in Bradford, West Yorkshire, we are proud of our UK manufacturing facility, where design, manufacturing, assembly and distribution all take place at one central site. That joined-up approach lets us create new products, manufacture them from start to finish and provide bespoke solutions with outstanding service.",
-    "Our CNC machining, drilling, spraying, pressing and upholstering capabilities let us manufacture accurately and respond quickly to customer requirements — whether the order is for one item or a larger quantity in a specific colour or finish.",
+    "Our CNC machining, drilling, spraying, pressing and upholstering capabilities let us manufacture accurately and respond quickly to customer requirements, whether the order is for one item or a larger quantity in a specific colour or finish.",
     "Our specialised product designers use modern 3D CAD technology to take ideas from concept to reality. They can develop a new product or adapt an existing one around the exact needs of a healthcare setting.",
   ],
   capabilities: [
@@ -45,7 +45,7 @@ export const aboutPage = {
 
 export const customisationPage = {
   intro:
-    "Tailored healthcare products that reflect your identity — without compromising hygiene, durability or compliance.",
+    "Tailored healthcare products that reflect your identity without compromising hygiene, durability or compliance.",
   paragraphs: [
     "Healthcare environments often require tailored solutions. Our dedicated customisation and branding service covers mobile privacy screens, clinical waste bins and other essential equipment, designed around both operational needs and visual identity.",
     "Whether you need colours that match departmental schemes, branded finishes that strengthen your organisation's presence, or a bespoke design for a unique application, our team can help.",

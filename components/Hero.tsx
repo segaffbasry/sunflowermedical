@@ -4,15 +4,16 @@ import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import Button from "./ui/Button";
+import TrustBadge from "./ui/TrustBadge";
 import { useUI } from "./UIProvider";
 import { hero, products, proof } from "@/lib/content";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const BENTO_LAYOUT = [
-  "md:col-span-6 md:row-span-2",
+  "col-span-2 aspect-[16/10] md:col-span-6 md:row-span-2 md:aspect-auto",
   "md:col-span-6 md:row-span-1",
   "md:col-span-3 md:row-span-1",
-  "md:col-span-3 md:row-span-1",
+  "col-span-2 aspect-[16/7] md:col-span-3 md:row-span-1 md:aspect-auto",
 ];
 const BENTO_TONE = ["bg-[#f2f2ed]", "bg-[#e9effd]", "bg-[#f7efd5]", "bg-[#edf1ea]"];
 
@@ -22,7 +23,7 @@ export default function Hero() {
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "16%"]);
-  const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const fade = useTransform(scrollYProgress, [0.55, 1], [1, 0.55]);
 
   return (
     <section
@@ -101,12 +102,21 @@ export default function Hero() {
             </Button>
           </motion.div>
 
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.12, ease: EASE }}
+            className="mt-[clamp(1rem,2.5svh,1.5rem)]"
+          >
+            <TrustBadge />
+          </motion.div>
+
         </div>
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.12, ease: EASE }}
+          transition={{ duration: 0.8, delay: 1.22, ease: EASE }}
           className="pill-rail -mx-5 mt-[clamp(1rem,3svh,1.75rem)] overflow-x-auto px-5 pb-1 sm:mx-0 sm:px-0"
         >
           <ul aria-label="Manufacturing credentials" className="flex w-max items-center gap-2 sm:w-auto sm:flex-wrap">
@@ -140,14 +150,16 @@ export default function Hero() {
               className={`group relative aspect-[5/4] w-full touch-manipulation overflow-hidden rounded-[24px] text-left ring-1 ring-inset ring-[rgba(27,27,24,0.07)] transition-[box-shadow,filter] duration-300 hover:brightness-[0.985] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1b1b18] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fdfdf7] sm:rounded-[28px] md:aspect-auto ${BENTO_LAYOUT[i]} ${BENTO_TONE[i]}`}
             >
               <Image
-                src={p.image}
+                src={i === 0 ? "/photography/clinical-room.png" : p.image}
                 alt=""
                 fill
-                sizes="(max-width: 768px) 45vw, (max-width: 1280px) 46vw, 44vw"
-                loading={i < 2 ? "eager" : "lazy"}
+                sizes={i === 0 ? "(max-width: 768px) 92vw, 48vw" : "(max-width: 768px) 45vw, (max-width: 1280px) 46vw, 44vw"}
+                loading="eager"
                 fetchPriority={i === 0 ? "high" : "auto"}
-                className={`pointer-events-none object-contain mix-blend-multiply transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.045] group-focus-visible:scale-[1.045] ${
-                  i === 0 ? "p-6 pb-16 md:p-9 md:pb-16" : "p-5 pb-14"
+                className={`pointer-events-none transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.045] group-focus-visible:scale-[1.045] ${
+                  i === 0
+                    ? "object-cover object-center"
+                    : "object-contain p-5 pb-14 mix-blend-multiply"
                 }`}
               />
 

@@ -143,7 +143,7 @@ export default function PrivacyPage() {
     <LegalPage
       eyebrow="Legal"
       title="Privacy & cookies"
-      intro="How Sunflower Medical collects, uses and protects personal information — and what this website stores on your device."
+      intro="How Sunflower Medical collects, uses and protects personal information, including what this website stores on your device."
       updated="4 August 2026"
       dateLabel="Page published"
       sections={sections}

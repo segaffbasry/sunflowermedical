@@ -17,7 +17,7 @@ const sections: readonly LegalSection[] = [
   {
     id: "important-notice",
     title: "Important notice and definitions",
-    number: "—",
+    number: "00",
     showInNav: false,
     paragraphs: [
       "This is an important document which should be read before any contract for the sale of goods is entered into. Attention is specifically drawn to clause 6, which contains limits on and exclusions to the liability of the Company to its Customers.",
