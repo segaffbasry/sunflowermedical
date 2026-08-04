@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InteriorHero from "@/components/pages/InteriorHero";
+import EditorialImage from "@/components/pages/EditorialImage";
 import ProductGrid from "@/components/pages/ProductGrid";
 import Reveal, { RevealWords } from "@/components/ui/Reveal";
 import FootCta from "@/components/FootCta";
@@ -49,27 +50,40 @@ export default function CataloguePage() {
       />
 
       <section className="pb-24 sm:pb-32">
-        <div className="shell grid gap-4 lg:grid-cols-12">
-          {resources.map((resource, index) => (
-            <Reveal key={resource.title} delay={index * 0.08} className={index === 0 ? "lg:col-span-7" : index === 1 ? "lg:col-span-5" : "lg:col-span-12"}>
-              <a
-                href={resource.href}
-                target="_blank"
-                rel="noreferrer"
-                className={`group flex h-full min-h-72 flex-col justify-between rounded-[24px] p-7 ring-1 ring-inset ring-[rgba(27,27,24,0.07)] transition-[transform,box-shadow] duration-500 hover:-translate-y-1 hover:shadow-[0_24px_60px_-36px_rgba(27,27,24,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1b1b18] sm:p-10 ${resource.tone}`}
-              >
-                <span>
-                  <span className="eyebrow">{resource.eyebrow}</span>
-                  <span className="display mt-6 block text-[clamp(1.8rem,3vw,3.2rem)]">{resource.title}</span>
-                  <span className="mt-4 block max-w-xl text-[0.9375rem] leading-relaxed text-[#61615b]">{resource.text}</span>
-                </span>
-                <span className="mt-10 inline-flex w-fit items-center gap-3 rounded-full bg-[#fdfdf7] px-5 py-3 text-[0.875rem] font-semibold shadow-[0_8px_24px_-20px_rgba(27,27,24,0.45)]">
-                  {resource.action}
-                  <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">↗</span>
-                </span>
-              </a>
-            </Reveal>
-          ))}
+        <div className="shell">
+          <div className="grid gap-4 lg:grid-cols-12">
+            {resources.map((resource, index) => (
+              <Reveal key={resource.title} delay={index * 0.08} className={index === 0 ? "lg:col-span-7" : index === 1 ? "lg:col-span-5" : "lg:col-span-12"}>
+                <a
+                  href={resource.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`group flex h-full min-h-72 flex-col justify-between rounded-[24px] p-7 ring-1 ring-inset ring-[rgba(27,27,24,0.07)] transition-[transform,box-shadow] duration-500 hover:-translate-y-1 hover:shadow-[0_24px_60px_-36px_rgba(27,27,24,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1b1b18] sm:p-10 ${resource.tone}`}
+                >
+                  <span>
+                    <span className="eyebrow">{resource.eyebrow}</span>
+                    <span className="display mt-6 block text-[clamp(1.8rem,3vw,3.2rem)]">{resource.title}</span>
+                    <span className="mt-4 block max-w-xl text-[0.9375rem] leading-relaxed text-[#61615b]">{resource.text}</span>
+                  </span>
+                  <span className="mt-10 inline-flex w-fit items-center gap-3 rounded-full bg-[#fdfdf7] px-5 py-3 text-[0.875rem] font-semibold shadow-[0_8px_24px_-20px_rgba(27,27,24,0.45)]">
+                    {resource.action}
+                    <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">↗</span>
+                  </span>
+                </a>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.12} className="mt-4">
+            <EditorialImage
+              src="/photography/clinic-reception.png"
+              alt="A modern healthcare reception furnished with rows of linked blue seating"
+              caption="See the range in a complete healthcare setting"
+              className="aspect-[4/3] sm:aspect-[16/7]"
+              position="50% 55%"
+              sizes="(max-width: 767px) 92vw, 92vw"
+            />
+          </Reveal>
         </div>
       </section>
 

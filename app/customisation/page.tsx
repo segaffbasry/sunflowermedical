@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InteriorHero from "@/components/pages/InteriorHero";
+import EditorialImage from "@/components/pages/EditorialImage";
 import Reveal, { RevealWords } from "@/components/ui/Reveal";
 import Customisation from "@/components/Customisation";
 import EnquiryForm from "@/components/EnquiryForm";
@@ -45,6 +46,16 @@ export default function CustomisationPage() {
               <div>
                 <Reveal><div className="eyebrow mb-5 !text-[#b8b8b0]">Designed and manufactured in the UK</div></Reveal>
                 <h2 className="display display-md !text-[#fdfdf7]"><RevealWords text="Complete control, from the drawing to the delivery." /></h2>
+                <Reveal delay={0.14} className="mt-8">
+                  <EditorialImage
+                    src="/photography/waiting-area-blue-screens.jpg"
+                    alt="Coordinated light blue healthcare seating and mobile privacy screens in a reception area"
+                    caption="Coordinated colours and finishes"
+                    className="aspect-[5/4]"
+                    position="50% 63%"
+                    sizes="(max-width: 1023px) 84vw, 31vw"
+                  />
+                </Reveal>
               </div>
               <div className="space-y-6">
                 {customisationPage.manufacture.map((paragraph, index) => (

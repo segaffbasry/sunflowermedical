@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InteriorHero from "@/components/pages/InteriorHero";
+import EditorialImage from "@/components/pages/EditorialImage";
 import ProductGrid from "@/components/pages/ProductGrid";
 import Reveal, { RevealWords } from "@/components/ui/Reveal";
 import FootCta from "@/components/FootCta";
@@ -22,6 +23,17 @@ export default function ProductsPage() {
 
       <section className="pb-24 sm:pb-32">
         <div className="shell">
+          <Reveal className="mb-12 sm:mb-16">
+            <EditorialImage
+              src="/photography/treatment-room-hero.png"
+              alt="A blue examination couch, clinical storage and mobile privacy screens in a treatment room"
+              caption="Products working together in a clinical setting"
+              className="aspect-[4/3] sm:aspect-[16/7]"
+              position="50% 55%"
+              sizes="(max-width: 767px) 92vw, 92vw"
+            />
+          </Reveal>
+
           <div className="mb-12 grid gap-7 lg:grid-cols-[0.62fr_1.38fr] lg:gap-20">
             <Reveal><div className="eyebrow">All categories</div></Reveal>
             <div>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InteriorHero from "@/components/pages/InteriorHero";
+import EditorialImage from "@/components/pages/EditorialImage";
 import Reveal, { RevealWords } from "@/components/ui/Reveal";
 import EnquiryForm from "@/components/EnquiryForm";
 import { company } from "@/lib/content";
@@ -79,6 +80,13 @@ export default function ContactPage() {
               <div>
                 <div className="eyebrow !text-[#b8b8b0]">Visit or call</div>
                 <h2 className="display mt-6 text-[clamp(1.8rem,3vw,3rem)] !text-[#fdfdf7]">Bradford, West Yorkshire.</h2>
+                <EditorialImage
+                  src="/photography/consultation-waiting-room.png"
+                  alt="Four upholstered armchairs around a low table in a quiet consultation waiting room"
+                  className="mt-8 aspect-[4/3]"
+                  position="50% 58%"
+                  sizes="(max-width: 1023px) 84vw, 34vw"
+                />
               </div>
               <div className="mt-12 space-y-7 text-[0.9375rem] text-[#d3d3cb]">
                 <address className="not-italic leading-relaxed">

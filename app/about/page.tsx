@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InteriorHero from "@/components/pages/InteriorHero";
+import EditorialImage from "@/components/pages/EditorialImage";
 import Reveal, { RevealWords } from "@/components/ui/Reveal";
 import Button from "@/components/ui/Button";
 import FootCta from "@/components/FootCta";
@@ -22,21 +23,34 @@ export default function AboutPage() {
       />
 
       <section className="pb-24 sm:pb-32">
-        <div className="shell grid gap-12 lg:grid-cols-[0.6fr_1.4fr] lg:gap-20">
-          <Reveal>
-            <div className="eyebrow lg:sticky lg:top-[calc(var(--header-height)+1.5rem)]">
-              Concept to distribution
+        <div className="shell">
+          <div className="grid gap-12 lg:grid-cols-[0.6fr_1.4fr] lg:gap-20">
+            <Reveal>
+              <div className="eyebrow lg:sticky lg:top-[calc(var(--header-height)+1.5rem)]">
+                Concept to distribution
+              </div>
+            </Reveal>
+            <div className="grid gap-8 sm:grid-cols-2">
+              {aboutPage.paragraphs.map((paragraph, index) => (
+                <Reveal key={paragraph} delay={index * 0.08} className={index === 0 ? "sm:col-span-2" : ""}>
+                  <p className={`${index === 0 ? "text-[clamp(1.45rem,2.4vw,2.35rem)] leading-[1.25] tracking-[-0.035em] text-[#1b1b18]" : "text-[1rem] leading-[1.7] text-[#61615b]"}`}>
+                    {paragraph}
+                  </p>
+                </Reveal>
+              ))}
             </div>
-          </Reveal>
-          <div className="grid gap-8 sm:grid-cols-2">
-            {aboutPage.paragraphs.map((paragraph, index) => (
-              <Reveal key={paragraph} delay={index * 0.08} className={index === 0 ? "sm:col-span-2" : ""}>
-                <p className={`${index === 0 ? "text-[clamp(1.45rem,2.4vw,2.35rem)] leading-[1.25] tracking-[-0.035em] text-[#1b1b18]" : "text-[1rem] leading-[1.7] text-[#61615b]"}`}>
-                  {paragraph}
-                </p>
-              </Reveal>
-            ))}
           </div>
+
+          <Reveal delay={0.12} className="mt-12 sm:mt-16">
+            <EditorialImage
+              src="/photography/factory-assembly.png"
+              alt="A technician assembling a clinical storage trolley in a furniture workshop"
+              caption="Designed, made and assembled in Bradford"
+              className="aspect-[4/3] sm:aspect-[16/7]"
+              position="50% 54%"
+              sizes="(max-width: 767px) 92vw, 92vw"
+            />
+          </Reveal>
         </div>
       </section>
 
