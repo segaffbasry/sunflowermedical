@@ -32,8 +32,25 @@ export default function Hero() {
       id="top"
       className="relative overflow-x-clip pt-[var(--header-height)]"
     >
-      <div className="hero-intro shell relative flex flex-col justify-center pb-[clamp(1rem,2.5svh,2rem)] pt-[clamp(1.5rem,5svh,5rem)]">
-        <div className="max-w-4xl">
+      <div className="hero-intro shell relative isolate flex flex-col justify-center overflow-hidden pb-[clamp(1rem,2.5svh,2rem)] pt-[clamp(1.5rem,5svh,5rem)]">
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 right-0 -z-10 overflow-hidden md:left-auto md:w-[68%]"
+          aria-hidden="true"
+        >
+          <Image
+            src="/photography/treatment-room-hero.png"
+            alt=""
+            fill
+            sizes="(max-width: 767px) 100vw, (min-width: 1888px) 1278px, 68vw"
+            loading="eager"
+            fetchPriority="high"
+            className="object-cover object-[58%_50%] opacity-[0.22] md:object-[54%_54%] md:opacity-[0.72]"
+          />
+          <div className="absolute inset-0 bg-[rgba(253,253,247,0.32)] md:bg-[linear-gradient(90deg,#fdfdf7_0%,rgba(253,253,247,0.92)_24%,rgba(253,253,247,0.56)_58%,rgba(253,253,247,0.28)_100%)]" />
+          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-[#fdfdf7]" />
+        </div>
+
+        <div className="relative z-10 max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -118,7 +135,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.22, ease: EASE }}
-          className="pill-rail -mx-5 mt-[clamp(1rem,3svh,1.75rem)] overflow-x-auto px-5 pb-1 sm:mx-0 sm:px-0"
+          className="pill-rail relative z-10 -mx-5 mt-[clamp(1rem,3svh,1.75rem)] overflow-x-auto px-5 pb-1 sm:mx-0 sm:px-0"
         >
           <ul aria-label="Manufacturing credentials" className="flex w-max items-center gap-2 sm:w-auto sm:flex-wrap">
             {proof.marks.map((mark) => (
@@ -155,8 +172,8 @@ export default function Hero() {
                 alt=""
                 fill
                 sizes={i === 0 ? "(max-width: 768px) 92vw, 48vw" : "(max-width: 768px) 45vw, (max-width: 1280px) 46vw, 44vw"}
-                loading="eager"
-                fetchPriority={i === 0 ? "high" : "auto"}
+                loading="lazy"
+                fetchPriority="auto"
                 className={`pointer-events-none transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.045] group-focus-visible:scale-[1.045] ${
                   i === 0
                     ? "object-cover object-[50%_54%]"
